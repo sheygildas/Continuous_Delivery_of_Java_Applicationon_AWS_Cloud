@@ -375,6 +375,28 @@
 
 
 
+### :package: Create Beanstalk and RDS
+### :package: Update RDS sec grp
+### :package: Deploy DB in rds
+### :package: Switch to cd-aws branch	
+### :package: Update settings.xml and pom.xml
+### :package: Create another build job to create artifact 
+### :package: Create a deploy job to beanstalk
+### :package: Create a build job for software testing
+### :package: Upload screenshot to s3 bucket
+### :package: Update Pipeline
+#### :package: Codecommit
+#### :package: Testcode
+#### :package: Build and Store
+#### :package: Deploy to s3 bucket
+#### :package: Build and Release
+#### :package: Deploy to Beanstalk
+#### :package: Build Job for Selenium test scripts
+#### :package: Upload result to s3
+### :package: Test Pipeline
+
+
+
 
 
 ## :page_facing_up: Resources
