@@ -43,7 +43,7 @@
   - [Update RDS sec grp](#package-update-rds-sec-grp)
   - [Deploy DB in rds](#package-deploy-db-in-rds)
   - [Switch to cd-aws branch](#package-switch-to-cd-aws-branch)
-  - [Update settings.xml and pom.xml](#package-update-settings.xml-and-pom.xml)
+  - [Update settings.xml and pom.xml](#package-update-settingsxml-and-pom.xml)
   - [Create another build job to create artifact](#package-create-another-build-job-to-create-artifact)
   - [Create a deploy job to beanstalk](#package-create-a-deploy-job-to-beanstalk)
   - [Create a build job for software testing](#package-create-a-build-job-for-software-testing)
