@@ -114,11 +114,14 @@
 ### :key: Login to AWS Account
 
 - Login into your AWS acount using the management console.
+
 <br/>
 <div align="right">
     <b><a href="#Project-06">↥ back to top</a></b>
 </div>
 <br/>
+
+
 ### :package: Code Commit
 
 - While signin in your AWS account, select `us-east-1` region aand search for CodeCommit service. 
