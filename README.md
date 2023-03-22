@@ -459,6 +459,7 @@ use accounts;
 show tables;
 ``` 
 
+- In your Beanstalk environment under `Configuration` -> `load balancer` -> `Processes` , update Health check path to `/login`
 
 <br/>
 <div align="right">
@@ -467,7 +468,51 @@ show tables;
 <br/>
 
 ### :package: Update settings.xml and pom.xml
+Go to CodeCommit on the AWS console, select `cd-aws` branch updates pom and settings.xml files. 
 
+Change the url of your pom.xml and add the correct url from your code artifact connection steps shown earlier.
+
+
+ ```sh
+<repository>
+        <id>codeartifact</id>
+        <name>codeartifact</name>
+    <url>https://visualpath-392530415763.d.codeartifact.us-east-1.amazonaws.com/maven/maven-central-store/</url>
+      </repository
+``` 
+
+
+Change the url of your setting.xml and add the correct url from your code artifact connection steps shown earlier.
+ 
+
+
+ ```sh
+<<profiles>
+  <profile>
+    <id>default</id>
+    <repositories>
+      <repository>
+        <id>codeartifact</id>
+    <url>https://visualpath-392530415763.d.codeartifact.us-east-1.amazonaws.com/maven/maven-central-store/</url>
+      </repository>
+    </repositories>
+  </profile>
+</profiles>
+<activeProfiles>
+        <activeProfile>default</activeProfile>
+    </activeProfiles>
+<mirrors>
+  <mirror>
+    <id>codeartifact</id>
+    <name>visualpath-maven-central-store</name>
+    <url>https://visualpath-392530415763.d.codeartifact.us-east-1.amazonaws.com/maven/maven-central-store/</url>
+    <mirrorOf>*</mirrorOf>
+  </mirror>
+</mirrors>
+``` 
+  
+  
+  
 <br/>
 <div align="right">
     <b><a href="#Project-09">↥ back to top</a></b>
