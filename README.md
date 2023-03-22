@@ -375,7 +375,30 @@
 
 
 
-### :package: Create Beanstalk and RDS
+### :package: Create 
+stalk and RDS
+- On the console, search for `elastic beanstalk`->`Applicatio`-> `create application`
+- Create an elatic Beanstalk environment for our vprofile application with the following details.
+
+
+
+ ```sh
+Name: vprofile-app
+Platform: Tomcat
+Application code: Sample code
+Click create.
+
+Capacity: LoadBalanced
+Min: 2
+Max: 4
+EC2 key pair: ci-vprofile-key 
+Tags: 
+Name:Project
+Value: vprofile
+click create app
+```
+
+
 
 <br/>
 <div align="right">
