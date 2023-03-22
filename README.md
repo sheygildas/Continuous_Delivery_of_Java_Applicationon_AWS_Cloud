@@ -44,20 +44,10 @@
   - [Deploy DB in rds](#package-deploy-db-in-rds)
   - [Update settings.xml and pom.xml](#package-update-settingsxml-and-pom.xml)
   - [Create another build job to create artifact](#package-create-another-build-job-to-create-artifact)
-  - [Create a deploy job to beanstalk](#package-create-a-deploy-job-to-beanstalk)
   - [Create a build job for software testing](#package-create-a-build-job-for-software-testing)
-  - [Upload screenshot to s3 bucket](#package-upload-screenshot-to-s3-bucket)
   - [Create Pipeline](#package-create-pipeline)
-    - [Codecommit](#package-codecommit)
-    - [Testcode](#package-testcode)
-    - [Build and Store](#package-build-and-store)
-    - [Deploy to s3 bucket](#package-deploy-to-s3-bucket)
-    - [Build and Release](#package-build-and-release)
-    - [Deploy to Beanstalk](#package-deploy-to-beanstalk)
-    - [Build Job for Selenium test scripts](#package-build-job-for-selenium-test-scripts)
-    - [Upload result to s3](#package-upload-result-to-s3) 
-  - [Test Pipeline](#package-test-pipeline)
-
+  - [SNS Notification](#package-sns-notification)
+- [Verify from browser](#earth_africa-verify-from-browser)
 - [Resources](#page_facing_up-resources)
 - [Credit/Acknowledgment](#star2-creditacknowledgment)
 
@@ -563,13 +553,6 @@ RDSPASS: SecureString
 </div>
 <br/>
 
-### :package: Create a deploy job to beanstalk
-
-<br/>
-<div align="right">
-    <b><a href="#Project-09">↥ back to top</a></b>
-</div>
-<br/>
 
 ### :package: Create a build job for software testing
 
@@ -613,13 +596,6 @@ Streamname: SoftwareTestingJob
 </div>
 <br/>
 
-### :package: Upload screenshot to s3 bucket
-
-<br/>
-<div align="right">
-    <b><a href="#Project-09">↥ back to top</a></b>
-</div>
-<br/>
 
 ### :package: Create Pipeline
 
@@ -708,7 +684,15 @@ ProjectName: SoftwareTesting
 </div>
 <br/>
 
-#### :package: Codecommit
+### :package:  SNS Notification
+- create an SNS notification for your pipeline 
+- Click `notify`-> `Manage Notification` and use the following details
+
+ ```sh
+vprofile-aws-cicd-pipeline-notification
+Select all
+Notification Topic: use same topic from CI pipeline
+```
 
 <br/>
 <div align="right">
@@ -716,70 +700,25 @@ ProjectName: SoftwareTesting
 </div>
 <br/>
 
-#### :package: Testcode
-
-<br/>
-<div align="right">
-    <b><a href="#Project-09">↥ back to top</a></b>
-</div>
-<br/>
-
-#### :package: Build and Store
-
-<br/>
-<div align="right">
-    <b><a href="#Project-09">↥ back to top</a></b>
-</div>
-<br/>
-
-#### :package: Deploy to s3 bucket
-
-<br/>
-<div align="right">
-    <b><a href="#Project-09">↥ back to top</a></b>
-</div>
-<br/>
-
-#### :package: Build and Release
-
-<br/>
-<div align="right">
-    <b><a href="#Project-09">↥ back to top</a></b>
-</div>
-<br/>
-
-#### :package: Deploy to Beanstalk
-
-<br/>
-<div align="right">
-    <b><a href="#Project-09">↥ back to top</a></b>
-</div>
-<br/>
-
-#### :package: Build Job for Selenium test scripts
-
-<br/>
-<div align="right">
-    <b><a href="#Project-09">↥ back to top</a></b>
-</div>
-<br/>
-
-#### :package: Upload result to s3
-
-<br/>
-<div align="right">
-    <b><a href="#Project-09">↥ back to top</a></b>
-</div>
-<br/>
 
 ### :package: Test Pipeline
 
-
+- Time to test our pipeline.
 <br/>
 <div align="right">
     <b><a href="#Project-09">↥ back to top</a></b>
 </div>
 <br/>
+
+
+## :earth_africa: Verify from browser
+
+<br/>
+<div align="right">
+    <b><a href="#Project-03">↥ back to top</a></b>
+</div>
+<br/>
+
 
 ## :page_facing_up: Resources
 
