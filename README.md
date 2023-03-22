@@ -527,7 +527,7 @@ Change the url of your setting.xml and add the correct url from your code artifa
 
  ```sh
 Name: Vprofile20 BuildAndRelease
-Provider: AWS CodeComit 
+Source: CodeCommit
 Repository: vprofile-code-repo
 branch: cd-aws
 Environment
@@ -572,6 +572,38 @@ RDSPASS: SecureString
 <br/>
 
 ### :package: Create a build job for software testing
+
+- Let's start by creating an S3 bucket through the AWS console. 
+
+
+ ```sh
+Name: <give it a unique name>
+Region: <region were our pipeline exist>
+``` 
+
+- Create a new Build job for Selenium code Testing with details below. 
+
+ ```sh
+Name: SoftwareTesting
+Source: CodeCommit
+Repo: vprofile-code-repo
+Branch: seleniumAutoScripts
+Environment:
+Windows Server 2019
+Runtime: Base
+Image: 1.0
+use the existing role 
+Insert build commands: Go to the folder `aws-files/win_buildspec.yml`from the source code you clone and copy the content .
+Update url part to our Elastic Beanstalk URL.
+Artifacts:
+Type: S3
+Bucketname: vprofile-cicd-test123 (used your own name)
+Enable semantic versioning
+Artifcats packaging: zip
+Logs:
+LogGroup: vprofile-cicd-logs 
+Streamname: SoftwareTestingJob
+``` 
 
 <br/>
 <div align="right">
