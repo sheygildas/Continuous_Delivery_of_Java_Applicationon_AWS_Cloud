@@ -644,6 +644,64 @@ application: vprofile-app
 Environment: vprofile-app-env
 ``` 
 
+- Disable transitions and Edit pipeline to add more stages.
+
+- On our code pipeline, goto `edit` and add a stage
+
+- Add a Code Annalysis stage to our codepipeline withe the details below. 
+
+
+
+
+ ```sh
+Name: CodeAnalysis
+Action provider: CodeBuild
+Input artifacts: SourceArtifact
+Project name: Vprofile-Build
+``` 
+
+- Add a BuildAndStore stage to the codepipeline:
+
+
+ ```sh
+Name: BuildAndStore
+Action provider: CodeBuild
+Input artifacts: SourceArtifact
+Project name: Vprofile-Build-artifact
+OutputArtifact: BuildArtifact
+```  
+
+- Add a  DeployToS3 stage to the codepipeline:
+
+
+
+ ```sh
+Name: DeployToS3
+Action provider: Amazon S3
+Input artifacts: BuildArtifact
+Bucket name: vprofile98-build-artifact
+Extract file before deploy
+```  
+
+- Go to Build stage `Edit` Stage. Change Output artifact name` as `BuildArtifactToBean`
+- Go to Deploy stage, `Edit` stage. We will change `InputArtifact` to `BuildArtifactToBean`
+
+
+- Add a SoftwareTesting stage to the codepipeline:
+
+
+ ```sh
+Name: Software Testing
+Action provider: CodeBuild
+Input artifacts: SourceArtifact
+ProjectName: SoftwareTesting
+```
+
+- Save all change and RUN the CodePipeline
+
+
+
+
 <br/>
 <div align="right">
     <b><a href="#Project-09">↥ back to top</a></b>
