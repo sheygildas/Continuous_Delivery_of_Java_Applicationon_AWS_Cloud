@@ -521,6 +521,42 @@ Change the url of your setting.xml and add the correct url from your code artifa
 
 ### :package: Create another build job to create artifact 
 
+- Go to AWS console and search for `CodeBuild` and change the branch from `ci-aws`to `cd-aws`
+- Create a new job and  called it  `Build Project` to deploy artifacts to BeanStalk.
+
+
+ ```sh
+Name: Vprofile20 BuildAndRelease
+Provider: AWS CodeComit 
+Repository: vprofile-code-repo
+branch: cd-aws
+Environment
+Managed image: Ubuntu
+Standard
+Image 5.0
+use the existing role from previous Build project 
+Insert build commands: 
+From source code we will get spec file under `aws-files/buildAndRelease_buildspec.yml`.
+Logs:
+LogGroup: vprofile-cicd-logs
+Stream name: BuildAndReleaseJob
+``` 
+
+- Add 3 new parameters of our RDS instance to SSM Parameter store
+- On you AWS console search for SSM and add the following. 
+
+ ```sh
+RDS-Endpoint: String
+RDSUSER: String
+RDSPASS: SecureString
+``` 
+
+- Test our build project 
+
+
+![Project Image](project-image-url)
+ 
+ 
 <br/>
 <div align="right">
     <b><a href="#Project-09">↥ back to top</a></b>
