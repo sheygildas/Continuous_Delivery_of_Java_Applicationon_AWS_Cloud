@@ -47,7 +47,7 @@
   - [Create a deploy job to beanstalk](#package-create-a-deploy-job-to-beanstalk)
   - [Create a build job for software testing](#package-create-a-build-job-for-software-testing)
   - [Upload screenshot to s3 bucket](#package-upload-screenshot-to-s3-bucket)
-  - [Update Pipeline](#package-update-pipeline)
+  - [Create Pipeline](#package-create-pipeline)
     - [Codecommit](#package-codecommit)
     - [Testcode](#package-testcode)
     - [Build and Store](#package-build-and-store)
@@ -605,6 +605,8 @@ LogGroup: vprofile-cicd-logs
 Streamname: SoftwareTestingJob
 ``` 
 
+
+
 <br/>
 <div align="right">
     <b><a href="#Project-09">↥ back to top</a></b>
@@ -619,7 +621,28 @@ Streamname: SoftwareTestingJob
 </div>
 <br/>
 
-### :package: Update Pipeline
+### :package: Create Pipeline
+
+- Create CodePipeline with name `vprofile-cicd-pipeline` 
+
+
+ ```sh
+Name: <give it a unique name>
+Source:CodeCommit
+Repo: vprofile-code-repo
+Breanch: cd-aws
+Change detection options: CloudWatch events
+
+Build
+BuildProvider: CodeBuild
+ProjectName: Vprofile-BuildAndRelease
+BuildType:Single Build
+
+Deploy
+Deploy provider: Beanstalk
+application: vprofile-app
+Environment: vprofile-app-env
+``` 
 
 <br/>
 <div align="right">
