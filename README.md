@@ -42,7 +42,6 @@
   - [Create Beanstalk and RDS](#package-create-beanstalk-and-rds)
   - [Update RDS sec grp](#package-update-rds-sec-grp)
   - [Deploy DB in rds](#package-deploy-db-in-rds)
-  - [Switch to cd-aws branch](#package-switch-to-cd-aws-branch)
   - [Update settings.xml and pom.xml](#package-update-settingsxml-and-pom.xml)
   - [Create another build job to create artifact](#package-create-another-build-job-to-create-artifact)
   - [Create a deploy job to beanstalk](#package-create-a-deploy-job-to-beanstalk)
@@ -375,7 +374,7 @@
 
 
 
-### :package: Create 
+### :package: Create Beanstalk and RDS
 stalk and RDS
 - On the console, search for `elastic beanstalk`->`Applicatio`-> `create application`
 - Create an elatic Beanstalk environment for our vprofile application with the following details.
@@ -398,7 +397,27 @@ Value: vprofile
 click create app
 ```
 
+### :package: Create RDS
+- On the console, search for `RDS` -> `create database`->``standard create`
+- 
+- Create an RDS service with the details below
 
+
+
+ ```sh
+Engine: MySQL
+version: 5.7
+Template: Free-Tier
+DB Identifier: vprofile-cicd-mysql
+credentials: admin
+Auto generate password (write down your password)
+db.t2.micro
+Create new Security Group: 
+Name: vprofile-cicd-rds-mysql-sg
+initial db name: accounts
+Scroll down and click on create db
+``` 
+- Click `View credential details` and write down your password.
 
 <br/>
 <div align="right">
@@ -407,6 +426,9 @@ click create app
 <br/>
 
 ### :package: Update RDS sec grp
+- On your console, goto `EC2`->`Security group` search for DB security 
+- Update RDS Security Group Inbound rules to allow access to Beanstalk instances on port 3306.
+
 
 <br/>
 <div align="right">
@@ -416,13 +438,27 @@ click create app
 
 ### :package: Deploy DB in rds
 
-<br/>
-<div align="right">
-    <b><a href="#Project-09">↥ back to top</a></b>
-</div>
-<br/>
+- Go to Beanstalk security group, and allow access to port 22 from  MyIP
+- SSH into your beanstalk instance to install mysql client in this instance to be able to connect RDS
+- Use the following scripts to create schema in our database.
 
-### :package: Switch to cd-aws branch	
+
+
+ ```sh
+sudo -i
+yum install mysql git -y
+mysql -h <RDS_endpoint> -u <RDS_username> -p<RDS_password>
+show databases;
+git clone https://github.com/rumeysakdogan/vprofileproject-all.git
+cd vprofileproject-all/
+git checkout cd-aws
+cd src/main/resources
+mysql -h <RDS_endpoint> -u <RDS_username> -p<RDS_password> accounts < db_backup.sql
+mysql -h <RDS_endpoint> -u <RDS_username> -p<RDS_password>
+use accounts;
+show tables;
+``` 
+
 
 <br/>
 <div align="right">
